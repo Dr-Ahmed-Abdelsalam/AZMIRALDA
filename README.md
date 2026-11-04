@@ -41,7 +41,7 @@ Source files: official logo JPEG and banner PNG provided by the user; `برام�
 ## Maritime Dispute Resolution Centre (Project in Formation)
 
 - `dispute-resolution.html`: bilingual Arabic/English landing page, linked from `index.html`.
-- `governance/`: six draft governance and procedural texts for review. They are **not effective** and not designed to accept live cases.
+- Governance rules, mediation procedures and arbitration rules are not published. The Centre has a bilingual Coming Soon page only.
 - The Centre is **not operational**; no arbitration, mediation, expert appointments or payments are accepted through this project.
 - Before launch: confirm legal form and authorisations, approve rules and fees, establish independent governance, security/privacy controls and formal launch decision. Do not make the drafts operational by removing the notice alone.
 
