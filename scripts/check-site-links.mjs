@@ -8,8 +8,8 @@ let checks=0;const errors=[];
 for(const filename of htmlFiles){
  const text=readFileSync(filename,'utf8');
  const origin='https://test.invalid/'+relative(root,filename).split(sep).join('/');
- const ids=new Set([...text.matchAll(/\\bid\\s*=\\s*["']([^"']+)["']/gi)].map(m=>m[1]));
- for(const a of text.matchAll(/\\b(?:href|src)\\s*=\\s*["']([^"']+)["']/gi)){
+ const ids=new Set([...text.matchAll(/\bid\s*=\s*["']([^"']+)["']/gi)].map(m=>m[1]));
+ for(const a of text.matchAll(/\b(?:href|src)\s*=\s*["']([^"']+)["']/gi)){
   const val=a[1];if(!val||/^(?:https?:|mailto:|tel:|data:|javascript:|\/\/)/i.test(val))continue;
   let url;try{url=new URL(val,origin)}catch{errors.push(filename+': bad URL '+val);continue}
   if(url.origin!=='https://test.invalid')continue;
@@ -19,7 +19,7 @@ for(const filename of htmlFiles){
   checks++;
   if(!existsSync(target)){errors.push(relative(root,filename)+': missing '+val);continue}
   if(url.hash&&extname(target)==='.html'){
-   const targetIds=target===filename?ids:new Set([...readFileSync(target,'utf8').matchAll(/\\bid\\s*=\\s*["']([^"']+)["']/gi)].map(m=>m[1]));
+   const targetIds=target===filename?ids:new Set([...readFileSync(target,'utf8').matchAll(/\bid\s*=\s*["']([^"']+)["']/gi)].map(m=>m[1]));
    if(!targetIds.has(decodeURIComponent(url.hash.slice(1))))errors.push(relative(root,filename)+': unknown anchor '+val);
   }
  }
