@@ -63,3 +63,60 @@
 .trainingEntryPaths small{font:500 12px/1.6 Cairo,sans-serif;color:#65778a}
 @media(max-width:900px){.trainingEntry{grid-template-columns:1fr}.trainingEntryMain{min-height:230px}}
 @media(max-width:540px){.trainingEntryPaths{grid-template-columns:1fr}.trainingEntryPaths a{padding:18px}.trainingSection{padding-block:48px}}
+
+/* AZMIRALDA typography scale — accessible Arabic/English on desktop and mobile */
+:root{--azm-body-size:17px;--azm-small-size:14px;--azm-card-title:21px}
+body{font-size:var(--azm-body-size);line-height:1.95}
+.nav nav{font-size:15px;gap:clamp(10px,1.5vw,23px)}
+.navcta,.btn,.lang{font-size:15px}
+.topline,.stripNum,.serviceCount{font-size:13px}
+.eyebrow{font-size:13px;line-height:1.7;letter-spacing:1.2px}
+.hero h1{font-size:clamp(36px,4vw,59px);line-height:1.5}
+.heroCopy>p{font-size:18px;line-height:2}
+.heroFoot{font-size:13px}
+.sectionTitle{font-size:clamp(29px,3.15vw,44px);line-height:1.55}
+.lede,.secHeader>p,.trainingLead p{font-size:17px;line-height:2}
+.strip b{font-size:15px}
+.serviceCard{padding:32px 24px;min-height:320px}
+.serviceCard h3{font-size:var(--azm-card-title);line-height:1.55}
+.serviceCard p{font-size:16px;line-height:1.9}
+.serviceCard a{font-size:15px;line-height:1.7}
+.serviceSoon{font-size:14px}
+.trainingEntryMain strong{font-size:clamp(24px,2.5vw,33px);line-height:1.5}
+.trainingEntryMain>span:nth-of-type(2){font-size:16px;line-height:1.9}
+.trainingEntryOver{font-size:13px}
+.trainingEntryArrow{font-size:16px}
+.trainingEntryPaths strong{font-size:19px}
+.trainingEntryPaths small{font-size:15px;line-height:1.8}
+.trainingLead .eyebrow{font-size:13px}
+.formHead h3{font-size:25px}
+.formHead p,.formPanel label:not(.consent),.formStatus,.consent,.contactInfo,.littleList span{font-size:15px}
+.formPanel input:not([type=checkbox]),.formPanel select,.formPanel textarea{font-size:16px;min-height:48px;line-height:1.7}
+.newsTickerLabel,.newsTickerItem,.newsTickerMore,.newsTickerIntro{font-size:14px}
+.newsTickerItem b{font-size:12px}
+.newsHero h1{font-size:clamp(32px,4vw,50px)}
+.newsHero p{font-size:17px}
+.newsNotice{font-size:16px;line-height:1.85}
+.newsCard h2{font-size:22px}
+.newsCard p{font-size:16px;line-height:1.9}
+.newsCard a,.newsCard .meta,.newsCourses p,.newsCourseList a{font-size:15px}
+.newsCourses h2{font-size:25px}
+.mdr-home-card p{font-size:16px}
+.mdr-home-status{font-size:14px}
+@media(max-width:1100px){
+  .nav nav{font-size:14px}
+  .serviceCard{padding:26px 21px}
+}
+@media(max-width:640px){
+  :root{--azm-body-size:16px;--azm-card-title:20px}
+  .shell{width:min(1200px,calc(100% - 32px))}
+  .hero h1{font-size:clamp(33px,8vw,43px)}
+  .heroCopy>p{font-size:17px}
+  .sectionTitle{font-size:clamp(29px,7vw,38px)}
+  .serviceCard{min-height:0;padding:26px 22px}
+  .serviceCard p{font-size:16px}
+  .trainingEntryPaths strong{font-size:19px}
+  .trainingEntryPaths small{font-size:15px}
+  .newsTickerLabel,.newsTickerItem{font-size:13px}
+  .newsHero p,.newsCard p{font-size:16px}
+}
