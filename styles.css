@@ -136,3 +136,15 @@ body{font-size:var(--azm-body-size);line-height:1.95}
   .navtools{flex-shrink:0}
 }
 @media(max-width:600px){.nav nav{top:70px;max-height:calc(100dvh - 80px)}}
+
+/* Audit mobile/accessibility refinements */
+.newsTickerItem b,.newsCourseList b{font-size:13px}
+.trainingEntryOver,.topline,.stripNum,.serviceCount,.eyebrow,.heroFoot{font-size:14px}
+.formPanel label,.formPanel .consent,.formPanel .formStatus{line-height:1.8}
+.turnstileMount{margin:10px 0}
+.turnstileMount:not(:empty){min-height:65px}
+@media(max-width:640px){
+ .nav nav a,.navcta,.btn,.lang{font-size:16px}
+ .topline,.eyebrow,.heroFoot,.newsTickerItem,.newsTickerLabel{font-size:14px}
+ .formPanel input:not([type=checkbox]),.formPanel textarea,.formPanel select,.formPanel label,.formPanel .consent{font-size:16px}
+}

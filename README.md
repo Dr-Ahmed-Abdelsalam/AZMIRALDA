@@ -21,7 +21,7 @@ Open `index.html` in a browser for static interface testing. Course search and b
 5. Verify the sending domain at Resend, complete DNS verification, redeploy and test both forms.
 6. Attach `www.azmiralda.com` through Cloudflare custom domains after confirming DNS ownership.
 
-**Security and operating notes:** Cloudflare Pages Functions are required for both `/api/contact` and `/api/instructor`. The source includes server validation, HTML escaping, request-size bounds and consent. Add Cloudflare WAF/rate limiting, monitoring, a privacy notice, retention/deletion procedures, spam prevention and (if using Turnstile) a frontend widget before a public campaign. The backend supports a Turnstile secret but the frontend does not yet present the token; do not set `TURNSTILE_SECRET_KEY` until the widget is integrated. Resend is a third-party email provider, so submitted form data is transmitted to it; the static site has no database, no file upload and no certificate issuance or authentication.
+**Security and operating notes:** Cloudflare Pages Functions are required for both `/api/contact` and `/api/instructor`. The source includes server validation, HTML escaping, request-size bounds and consent. Add Cloudflare WAF/rate limiting, monitoring, a privacy notice, retention/deletion procedures, spam prevention and (if using Turnstile) a frontend widget before a public campaign. The frontend now supports Turnstile. Set the public site key in `index.html` (meta `azm-turnstile-site-key`) and the `TURNSTILE_SECRET_KEY` in Cloudflare Pages together; optionally set `TURNSTILE_EXPECTED_HOSTNAME`. Never commit the secret. Configure separate preview/prod keys as needed. Resend is a third-party email provider, so submitted form data is transmitted to it; the static site has no database, no file upload and no certificate issuance or authentication.
 
 ## Acceptance checks
 - Arabic RTL and English LTR toggle without page reload.
@@ -49,3 +49,10 @@ Source files: official logo JPEG and banner PNG provided by the user; `برام�
 - `news.html` is a bilingual company updates section linked from the main navigation and footer.
 - The home page includes a pauseable accessible scrolling ticker populated from the phase-one proposed programme catalogue (`assets/courses.js`), with no invented announcements or enrollment claims.
 - When operational company news becomes available, replace preliminary cards only with reviewed, dated content.
+
+## Code audit follow-up (November 2026)
+- `assets/courses.json` is the canonical 16-programme catalogue. Regenerate the runtime adapter with `node scripts/sync-courses.mjs`; use `--check` in CI. Keep the 68-record course explorer as a separate dataset.
+- The course explorer's original inline code was extracted to `assets/courses-page.css` and `assets/courses-page.js`.
+- Turnstile only activates when a public site key is configured; the backend only requires its token when `TURNSTILE_SECRET_KEY` is set. Configure both simultaneously, and test Cloudflare preview before release.
+- Requests are capped while streaming (12,000 bytes), independently of Content-Length.
+- Test email delivery requires correct Resend secrets and an authorized Cloudflare preview deployment; static previews alone cannot verify it.
