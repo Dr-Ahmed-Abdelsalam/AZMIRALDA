@@ -17,7 +17,53 @@ function renderFilters(){const el=$('#filters');if(!el)return;el.innerHTML='';gr
 function renderCourses(){if(!$('#courseGrid'))return;const filtered=courses.filter(c=>(filter==='all'||c.groupId===filter)&&[c.ar,c.en,c.code,c.tbl].some(v=>v.toLowerCase().includes(query.toLowerCase())));$('#courseCount').textContent=`${filtered.length} ${label('courseCount')}`;$('#empty').hidden=filtered.length!==0;$('#courseGrid').innerHTML=filtered.map(c=>`<article class="courseCard"><div class="courseTop"><span class="courseCode">${safe(c.code)}</span><span class="courseGroup">${safe(label(c.groupId))}</span></div><h3>${safe(locale==='ar'?c.ar:c.en)}</h3><div class="courseEn">${safe(locale==='ar'?c.en:c.code)}</div><div class="courseFacts"><span>${safe(c.days)} ${label(c.days===1?'day':'day2')}</span><b>${safe(c.hours)} ${label('hoursUnit')}</b></div><button type="button" data-course="${safe(c.code)}">${label('details')} ↗</button></article>`).join('');$$('[data-course]').forEach(b=>b.addEventListener('click',()=>showCourse(b.dataset.course)))}
 function showCourse(code){let c=courses.find(x=>x.code===code);if(!c)return;const details=[[label('reference'),c.tbl],[label('duration'),`${c.days} ${label(c.days===1?'day':'day2')} · ${c.hours} ${label('hoursUnit')}`],[label('age'),c.age],[label('target'),locale==='ar'?c.target:'See Arabic catalogue for full target audience'],[label('medical'),c.med],[label('service'),c.sea],[label('assessment'),c.assess],[label('certificate'),c.validity]];$('#dialogContent').innerHTML=`<div class="dialogTag">${safe(c.code)} · STCW ${safe(c.tbl)}</div><h2 id="dialogTitle">${safe(locale==='ar'?c.ar:c.en)}</h2><p class="english">${safe(locale==='ar'?c.en:c.ar)}</p><dl>${details.map(([a,b])=>`<dt>${safe(a)}</dt><dd>${safe(b)}</dd>`).join('')}</dl><p class="dialogNotice">${safe(label('approval'))}</p><a class="btn primary" href="#contact" id="askCourse">${label('askAbout')} ↗</a>`;const dialog=$('#courseDialog');dialog.showModal();$('#askCourse').onclick=()=>{dialog.close();const sel=$('#contactForm select[name=topic]');sel.value='training';const box=$('#contactForm textarea');box.value=(locale==='ar'?'استفسار عن البرنامج: ':'Enquiry about course: ')+c.code+' — '+(locale==='ar'?c.ar:c.en)+'\n';}};
 $('#closeDialog').onclick=()=>$('#courseDialog').close();$('#courseDialog').addEventListener('click',e=>{if(e.target.id==='courseDialog')e.target.close()});$('#year').textContent=new Date().getFullYear();$('#courseSearch')?.addEventListener('input',e=>{query=e.target.value.trim();renderCourses()});$('#langBtn').onclick=()=>{locale=locale==='ar'?'en':'ar';translate()};$('#menuBtn').onclick=()=>{const n=$('#navlinks');const next=!n.classList.contains('open');n.classList.toggle('open',next);$('#menuBtn').setAttribute('aria-expanded',String(next))};$$('#navlinks a').forEach(a=>a.onclick=()=>{$('#navlinks').classList.remove('open');$('#menuBtn').setAttribute('aria-expanded','false')});
-async function send(form,endpoint){const st=form.querySelector('.formStatus'),btn=form.querySelector('button[type=submit]');st.textContent='';st.className='formStatus';if(!form.reportValidity())return;const fd=new FormData(form),payload=Object.fromEntries(fd.entries());payload.consent=fd.get('consent')==='on';// Client-side guard; server validates again.
-if(location.protocol==='file:'){st.textContent=label('server');st.classList.add('error');return}btn.disabled=true;st.textContent=label('loading');try{const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),12000);let response;try{response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:controller.signal})}finally{clearTimeout(timeout)}const result=await response.json().catch(()=>({}));if(!response.ok)throw Error(result.error||label('failure'));form.reset();st.textContent=label('success');st.classList.add('success')}catch(e){st.textContent=label('failure');st.classList.add('error')}finally{btn.disabled=false}}
+const turnstileSiteKey=document.querySelector('meta[name="azm-turnstile-site-key"]')?.content.trim()||'';
+const turnstileWidgets=new WeakMap();
+function prepareTurnstile(){
+ if(!turnstileSiteKey)return;
+ const script=document.createElement('script');script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';script.async=true;script.defer=true;
+ script.onload=()=>{
+  if(!window.turnstile)return;
+  document.querySelectorAll('form .turnstileMount').forEach(mount=>{
+   const form=mount.closest('form');
+   const id=window.turnstile.render(mount,{sitekey:turnstileSiteKey,theme:'auto',
+    callback:token=>{form.dataset.turnstileToken=token},
+    'expired-callback':()=>{delete form.dataset.turnstileToken},
+    'error-callback':()=>{delete form.dataset.turnstileToken}
+   });turnstileWidgets.set(form,id);
+  });
+ };
+ script.onerror=()=>document.querySelectorAll('form .turnstileMount').forEach(m=>m.textContent=label('failure'));
+ document.head.appendChild(script);
+}
+prepareTurnstile();
+async function send(form,endpoint){
+ const st=form.querySelector('.formStatus'),btn=form.querySelector('button[type=submit]');
+ st.textContent='';st.className='formStatus';
+ if(!form.reportValidity())return;
+ if(turnstileSiteKey&&!form.dataset.turnstileToken){
+  st.textContent=locale==='ar'?'أكمل التحقق البشري أولاً.':'Please complete human verification first.';
+  st.classList.add('error');return;
+ }
+ const fd=new FormData(form),payload=Object.fromEntries(fd.entries());
+ payload.consent=fd.get('consent')==='on';
+ if(turnstileSiteKey)payload.turnstileToken=form.dataset.turnstileToken;
+ if(location.protocol==='file:'){st.textContent=label('server');st.classList.add('error');return}
+ btn.disabled=true;st.textContent=label('loading');
+ try{
+  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
+  let response;try{response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:controller.signal})}
+  finally{clearTimeout(timeout)}
+  const result=await response.json().catch(()=>({}));
+  if(!response.ok)throw Error(result.error||label('failure'));
+  form.reset();st.textContent=label('success');st.classList.add('success');
+ }catch(e){st.textContent=label('failure');st.classList.add('error')}
+ finally{
+  if(turnstileSiteKey&&window.turnstile&&turnstileWidgets.has(form)){
+   window.turnstile.reset(turnstileWidgets.get(form));delete form.dataset.turnstileToken;
+  }
+  btn.disabled=false;
+ }
+}
 $('#contactForm').addEventListener('submit',e=>{e.preventDefault();send(e.currentTarget,'/api/contact')});$('#trainerForm').addEventListener('submit',e=>{e.preventDefault();send(e.currentTarget,'/api/instructor')});translate();
 })();

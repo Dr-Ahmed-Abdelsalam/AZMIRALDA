@@ -5,9 +5,23 @@ const checkEmail=email=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)&&email.length<=
 const escapeHtml=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export async function handleForm({request,env},kind){
  if(request.method!=='POST')return reply({error:'Method not allowed'},405);
- if(!request.headers.get('content-type')?.includes('application/json'))return reply({error:'Unsupported content type'},415);
+ if(!/^application\/json(?:\s*;|\s*$)/i.test(request.headers.get('content-type')||''))return reply({error:'Unsupported content type'},415);
  const len=Number(request.headers.get('content-length')||0);if(len>12000)return reply({error:'Payload too large'},413);
- let data;try{data=await request.json()}catch{return reply({error:'Invalid JSON'},400)}
+ let data;
+ try{
+  if(!request.body)return reply({error:'Invalid JSON'},400);
+  const reader=request.body.getReader(), decoder=new TextDecoder('utf-8',{fatal:true});
+  let bytes=0,text='';
+  try{
+   while(true){const {done,value}=await reader.read();if(done)break;
+    bytes+=value.byteLength;
+    if(bytes>12000){await reader.cancel().catch(()=>{});return reply({error:'Payload too large'},413)}
+    text+=decoder.decode(value,{stream:true});
+   }
+   text+=decoder.decode();
+  }finally{reader.releaseLock()}
+  data=JSON.parse(text);
+ }catch{return reply({error:'Invalid JSON'},400)}
  if(!data||typeof data!=='object'||Array.isArray(data))return reply({error:'Invalid form'},400);
  const name=clamp(data.name,120),email=clamp(data.email,180),phone=clamp(data.phone,32),message=clamp(data.message,3000),consent=data.consent===true;
  const topic=kind==='contact'?clamp(data.topic,30):clamp(data.specialty,160);
@@ -19,7 +33,14 @@ export async function handleForm({request,env},kind){
  if(!env.RESEND_API_KEY||!env.CONTACT_TO_EMAIL||!env.MAIL_FROM)return reply({error:'Mail delivery not configured'},503);
  // Optional Cloudflare Turnstile: configure both site widget and secret to activate.
  if(env.TURNSTILE_SECRET_KEY){const token=clamp(data.turnstileToken,3000);if(!token)return reply({error:'Human verification required'},400);
- const verify=await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({secret:env.TURNSTILE_SECRET_KEY,response:token})});if(!(await verify.json()).success)return reply({error:'Human verification failed'},400)}
+ let verified;
+ try{const verify=await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify',{
+  method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},
+  body:new URLSearchParams({secret:env.TURNSTILE_SECRET_KEY,response:token,...(request.headers.get('CF-Connecting-IP')?{remoteip:request.headers.get('CF-Connecting-IP')}:{})})
+ });if(!verify.ok)return reply({error:'Human verification unavailable'},502);verified=await verify.json()
+ }catch{return reply({error:'Human verification unavailable'},502)}
+ if(!verified.success||(env.TURNSTILE_EXPECTED_HOSTNAME&&verified.hostname!==env.TURNSTILE_EXPECTED_HOSTNAME))
+  return reply({error:'Human verification failed'},400)}
  const subject=(kind==='contact'?'AZMIRALDA enquiry':'AZMIRALDA instructor interest')+' — '+topic;
  const lines=[['Request type',kind],['Name',name],['Email',email],['Phone',phone],['Topic / Specialty',topic],['Profile',profile],['Message',message]];
  const html='<div dir="auto" style="font-family:Arial,sans-serif"><h2>'+escapeHtml(subject)+'</h2>'+lines.map(([k,v])=>`<p><b>${escapeHtml(k)}</b><br><span style="white-space:pre-wrap">${escapeHtml(v)}</span></p>`).join('')+'</div>';
