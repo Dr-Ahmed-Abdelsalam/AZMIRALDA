@@ -141,6 +141,26 @@ tr.det td{background:var(--bg)}
 #gtable tr.tot td{background:var(--bg);font-weight:700;text-align:center}
 .legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.82rem;color:var(--muted);align-items:center}
 footer{color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);padding-top:14px;max-width:95ch}
+
+/* AZMIRALDA Maritime Career Navigator — accessible, responsive, rules-based */
+.navigator{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 36px rgba(19,41,75,.06)}
+.nav-intro{padding:25px 28px;background:linear-gradient(115deg,#10294a,#1a4368);color:#fff}
+.nav-intro small{color:#e5c782;letter-spacing:.09em;font-weight:700}
+.nav-intro h2{color:#fff;font-size:clamp(1.4rem,2.6vw,2rem);margin:8px 0}.nav-intro p{margin:0;color:#e0eaf4;max-width:75ch}
+.nav-modes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:17px;background:var(--bg)}
+.nav-mode{border:1px solid var(--line);border-radius:13px;background:var(--surface);padding:16px 12px;cursor:pointer;text-align:start;display:flex;flex-direction:column;gap:6px;min-height:125px}
+.nav-mode:hover{border-color:var(--gold)}.nav-mode[aria-pressed="true"]{border:2px solid var(--gold);background:var(--gold-soft)}
+.nav-mode .nav-icon{font-size:1.65rem;line-height:1.2}.nav-mode strong{color:var(--ink)}.nav-mode small{color:var(--muted)}
+.nav-pane{padding:20px 25px 27px}.nav-pane[hidden]{display:none!important}.nav-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:end}
+.nav-field{display:grid;gap:6px}.nav-field label{font-size:.9rem;font-weight:700;color:var(--ink)}.nav-field select,.nav-field input{background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:11px;color:var(--ink);font:inherit;width:100%;min-width:0}
+.nav-action{background:#a97f2c;border:1px solid #a97f2c;border-radius:9px;padding:11px 16px;color:#fff;font-weight:700;cursor:pointer;font:inherit}.nav-action:hover{background:#87641e}.nav-action:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
+.nav-hint{color:var(--muted);font-size:.88rem;margin:12px 0 0}.nav-result{border-top:1px solid var(--line);background:var(--bg);padding:22px 25px;display:grid;gap:14px}.nav-result[hidden]{display:none!important}
+.nav-result-title{font-size:1.15rem;color:var(--navy);font-family:var(--f-display);margin:0}.nav-steps{display:flex;gap:8px;flex-wrap:wrap}.nav-step{border:1px solid var(--line);background:var(--surface);border-radius:30px;padding:6px 12px;font-size:.86rem}
+.nav-course-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:9px}.nav-course{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:12px 13px;display:grid;gap:5px}.nav-course strong{font-size:.9rem}.nav-course small{color:var(--muted)}
+.nav-links{display:flex;gap:9px;flex-wrap:wrap}.nav-links button,.nav-links a{border:1px solid var(--gold);color:var(--ink);background:var(--gold-soft);border-radius:9px;padding:8px 13px;text-decoration:none;font-weight:700;cursor:pointer;font:inherit;font-size:.9rem}
+.nav-warning{margin:0;color:var(--muted);font-size:.82rem;line-height:1.8}
+@media(max-width:800px){.nav-modes{grid-template-columns:repeat(2,minmax(0,1fr))}.nav-form{grid-template-columns:1fr}.nav-intro,.nav-pane,.nav-result{padding-inline:17px}}
+@media(max-width:420px){.nav-mode{min-height:125px;padding:12px 10px}}
 </style>
 
 <div class="azm-sitebar" role="navigation" aria-label="تنقل موقع أزميرالدا"><a class="azm-back" href="./index.html#training">↩ العودة للموقع الرئيسي</a><a href="./index.html#contact">تواصل معنا</a><a href="./index.html#careers">التعاون مع المدربين</a><span class="azm-sitebrand">AZMIRALDA | MARITIME TRAINING</span></div><div class="wrap" dir="rtl" lang="ar"><section class="azm-context" aria-label="تنويه حالة البرامج"><strong>مستكشف البرامج والمسارات التدريبية — دليل تخطيطي</strong><p>تضم المصفوفة ٦٨ برنامجًا ومسارًا تدريبيًا مرتبطًا بـ٢٤ وظيفة؛ وهي قائمة تخطيطية لا تعني طرح جميع البرامج للتسجيل. برامج الكتالوج الأول (١٦ برنامجًا) مقدمة للاعتماد من الهيئة المصرية لسلامة الملاحة البحرية، وليست معتمدة تلقائيًا. وتظل متطلبات التأهيل والاعتماد وشروط كل برنامج خاضعة للمراجعة لدى الجهات المختصة.</p><a href="./index.html#training">الاطلاع على كتالوج برامج المرحلة الأولى</a></section>
@@ -152,6 +172,29 @@ footer{color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);paddi
       <p class="lede">اختر وظيفة لترى شروط الدخول إليها، والدورات التي تحتاجها مصنفة حسب مصدر الإلزام، ونوع تدريب كل دورة، والخطوة التالية في الترقية. اضغط أي دورة لتفاصيلها.</p>
     </div>
   </header>
+
+
+<section class="navigator" id="career-navigator" aria-labelledby="navigator-title">
+  <div class="nav-intro"><small>AZMIRALDA MARITIME CAREER NAVIGATOR</small><h2 id="navigator-title">اكتشف مسارك المهني البحري</h2><p>ابدأ من مؤهلك أو وظيفتك، أو ابحث عن دورة. نربط النتائج بالمصفوفة المهنية والمراجع الواردة فيها، دون افتراض استيفاء شروط الأهلية.</p></div>
+  <div class="nav-modes" aria-label="اختر طريقة الاستكشاف">
+    <button type="button" class="nav-mode" data-nav-mode="beginner" aria-pressed="true"><span class="nav-icon" aria-hidden="true">🎓</span><strong>أنا مبتدئ</strong><small>أستكشف المسارات وفق مؤهلي واهتمامي</small></button>
+    <button type="button" class="nav-mode" data-nav-mode="seafarer" aria-pressed="false"><span class="nav-icon" aria-hidden="true">⚓</span><strong>أنا بحّار</strong><small>أعرف الدورات والتدرج للوظيفة التالية</small></button>
+    <button type="button" class="nav-mode" data-nav-mode="officer" aria-pressed="false"><span class="nav-icon" aria-hidden="true">🧭</span><strong>أنا ضابط أو مهندس</strong><small>أستكشف التأهيل والدورات المتخصصة</small></button>
+    <button type="button" class="nav-mode" data-nav-mode="search" aria-pressed="false"><span class="nav-icon" aria-hidden="true">⌕</span><strong>أبحث عن دورة</strong><small>البحث بالاسم أو الرمز أو المرجع</small></button>
+  </div>
+  <div class="nav-pane" data-nav-pane="beginner">
+    <form class="nav-form" data-guide="beginner">
+      <div class="nav-field"><label for="nav-qualification">المؤهل الدراسي</label><select id="nav-qualification" required><option value="">اختر مؤهلك</option><option value="basic">تعليم أساسي أو إعدادي</option><option value="general">ثانوية عامة أو ما يعادلها</option><option value="technical">دبلوم فني / صناعي</option><option value="university">مؤهل جامعي</option></select></div>
+      <div class="nav-field"><label for="nav-beginner-track">مجال الاهتمام</label><select id="nav-beginner-track" required><option value="">اختر المجال</option><option value="J2">السطح والملاحة</option><option value="J4">المحركات</option><option value="J6">كهرباء السفن</option><option value="J17">اليخوت — السطح</option><option value="J20">اليخوت — المحركات</option><option value="J13">الفندقة البحرية</option><option value="J15">لنشات السفاري</option><option value="J23">الصيد</option></select></div>
+      <div class="nav-field"><label for="nav-sea-service">هل لديك خدمة بحرية سابقة؟</label><select id="nav-sea-service"><option value="none">لا، أبدأ لأول مرة</option><option value="yes">نعم، لدي خبرة بحرية</option></select></div>
+      <button class="nav-action" type="submit">استكشف المسار والدورات ←</button>
+    </form><p class="nav-hint">المؤهل الدراسي نقطة إرشادية فقط؛ قد يلزم تحديد نوع الدراسة والسن والخبرة والشهادات قبل تأكيد الأهلية.</p>
+  </div>
+  <div class="nav-pane" data-nav-pane="seafarer" hidden><form class="nav-form" data-guide="seafarer"><div class="nav-field"><label for="nav-seafarer-job">ما وظيفتك الحالية أو المستهدفة؟</label><select id="nav-seafarer-job" required></select></div><div class="nav-field"><label for="nav-seafarer-aim">ما الذي تبحث عنه؟</label><select id="nav-seafarer-aim"><option value="requirements">الدورات المرتبطة بالوظيفة</option><option value="next">الترقية إلى وظيفة أعلى</option></select></div><button class="nav-action" type="submit">عرض خطتي المهنية ←</button></form></div>
+  <div class="nav-pane" data-nav-pane="officer" hidden><form class="nav-form" data-guide="officer"><div class="nav-field"><label for="nav-officer-job">التخصص أو الرتبة</label><select id="nav-officer-job" required></select></div><div class="nav-field"><label for="nav-officer-focus">نوع العرض</label><select id="nav-officer-focus"><option value="all">جميع الدورات المرتبطة</option><option value="specialist">الدورات المتخصصة وحسب نوع السفينة</option><option value="simulator">الدورات المرتبطة بالمحاكيات</option></select></div><button class="nav-action" type="submit">عرض متطلبات التخصص ←</button></form></div>
+  <div class="nav-pane" data-nav-pane="search" hidden><form class="nav-form" data-guide="search"><div class="nav-field"><label for="nav-course-query">اسم الدورة أو الاختصار أو مرجع STCW</label><input id="nav-course-query" type="search" placeholder="مثال: PST أو ARPA أو مكافحة الحرائق" required minlength="2"></div><button class="nav-action" type="submit">بحث في ٦٨ سجلًا ←</button></form></div>
+  <div class="nav-result" id="nav-result" aria-live="polite" hidden></div>
+</section>
 
   <section class="summary" id="stats" aria-label="ملخص"></section>
 
@@ -365,6 +408,64 @@ function renderGrid(){
 
 renderRail();renderDetail();renderMatrix();renderGrid();
 const savedTab=load("tab");if(savedTab&&document.getElementById(savedTab))showTab(savedTab);
+</script>
+
+<script>
+/* Rule-based guidance. No LLM, no inferred legal eligibility, no external calls. */
+(function(){
+ const modeButtons=[...document.querySelectorAll('[data-nav-mode]')];
+ const result=document.getElementById('nav-result');
+ const el=(id)=>document.getElementById(id);
+ const safe=(s)=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+ const roles={seafarer:['J1','J2','J3','J4','J5','J6','J13','J14','J15','J16','J17','J18','J20','J21','J23','J24'],officer:['J7','J8','J9','J10','J11','J12','J19','J22']};
+ for(const [kind,ids] of Object.entries(roles)){
+   const select=el(kind==='seafarer'?'nav-seafarer-job':'nav-officer-job');
+   select.innerHTML='<option value="">اختر الوظيفة</option>'+ids.map(id=>`<option value="${id}">${safe(JOB[id].name)}</option>`).join('');
+ }
+ function changeMode(mode){
+   modeButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.navMode===mode)));
+   document.querySelectorAll('[data-nav-pane]').forEach(p=>p.hidden=p.dataset.navPane!==mode);
+   result.hidden=true;
+ }
+ modeButtons.forEach(b=>b.addEventListener('click',()=>changeMode(b.dataset.navMode)));
+ const disclaimer='النتائج استرشادية مأخوذة من المصفوفة المرفقة ولا تثبت أهلية المتقدم، ولا تعني أن الدورة متاحة أو معتمدة؛ ينبغي مراجعة الشروط والمستندات والتطبيق لدى الجهات المختصة. بعض المراجع معلّمة في المصدر «للتحقق». ';
+ function showCourses(courses){return courses.slice(0,18).map(c=>`<div class="nav-course"><strong>${safe(c.ar)}</strong><small dir="ltr">${safe(c.en)}</small><small>${safe(c.stcw)} · ${safe(c.phase)} · ${safe(c.conf)}</small></div>`).join('')}
+ function showJob(jobId,options={}){
+   const j=JOB[jobId];if(!j)return;
+   const qualified=options.qualification;
+   const linked=D.courses.filter(c=>c.jobs[jobId]);
+   let chosen=linked;
+   if(options.focus==='specialist')chosen=linked.filter(c=>!isQ(c.jobs[jobId])&&c.jobs[jobId]!=='اتفاقية');
+   if(options.focus==='simulator')chosen=linked.filter(c=>c.sim==='نعم'||c.sim==='اختياري');
+   if(options.aim==='next'&&j.next.length){chosen=D.courses.filter(c=>j.next.some(id=>c.jobs[id]));}
+   const title=options.aim==='next'&&j.next.length?'دورات الوظائف التالية المقترحة':'دورات مرتبطة بالوظيفة';
+   let qualMsg='';
+   if(qualified)qualMsg='<p class="nav-warning">المؤهل المختار: <strong>'+safe(qualified)+'</strong>. لا يمكن الجزم بقبول هذا المؤهل وحده؛ راجع اشتراطات الوظيفة ونوع المؤهل والسن والخدمة البحرية.</p>';
+   result.innerHTML=`<h3 class="nav-result-title">${safe(j.name)} — ${title}</h3><div class="nav-steps"><span class="nav-step">${safe(j.dept)}</span><span class="nav-step">${safe(j.entry)}</span></div><p><strong>المسار التالي:</strong> ${safe(j.nextNote)}</p>${qualMsg}<p class="nav-hint">${chosen.length} دورة/وحدة مرتبطة بحسب معيار البحث. تصنيف الإلزام يُراجع داخل المصفوفة.</p>${chosen.length?`<div class="nav-course-list">${showCourses(chosen)}</div>`:'<p class="nav-warning">لا توجد دورات مطابقة للمرشح المختار في المصفوفة.</p>'}<div class="nav-links"><button type="button" data-go-job="${safe(jobId)}">فتح المسار التفصيلي</button><button type="button" data-go-matrix="1">فتح المصفوفة الكاملة</button></div><p class="nav-warning">${disclaimer}</p>`;
+   result.hidden=false;
+ }
+ document.querySelectorAll('[data-guide]').forEach(form=>form.addEventListener('submit',e=>{
+   e.preventDefault();if(!form.reportValidity())return;
+   const kind=form.dataset.guide;
+   if(kind==='beginner'){
+     const qual=el('nav-qualification').selectedOptions[0].textContent;
+     showJob(el('nav-beginner-track').value,{qualification:qual});
+   }else if(kind==='seafarer')showJob(el('nav-seafarer-job').value,{aim:el('nav-seafarer-aim').value});
+   else if(kind==='officer')showJob(el('nav-officer-job').value,{focus:el('nav-officer-focus').value});
+   else {
+     const q=el('nav-course-query').value.trim().toLowerCase();
+     const courses=D.courses.filter(c=>[c.ar,c.en,c.stcw,c.mc,c.cat,c.eg].join(' ').toLowerCase().includes(q));
+     result.innerHTML=`<h3 class="nav-result-title">نتائج البحث: ${courses.length}</h3>${courses.length?`<div class="nav-course-list">${showCourses(courses)}</div>`:'<p>لم نعثر على دورة مطابقة؛ جرّب الاسم أو الاختصار أو مرجع STCW.</p>'}<div class="nav-links"><button type="button" data-go-matrix="1">البحث المتقدم في المصفوفة</button></div><p class="nav-warning">${disclaimer}</p>`;
+     result.hidden=false;
+   }
+   result.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});
+ }));
+ result.addEventListener('click',e=>{
+   const btn=e.target.closest('button');if(!btn)return;
+   if(btn.dataset.goJob){selectJob(btn.dataset.goJob,false);el('p-paths').scrollIntoView({behavior:'smooth',block:'start'})}
+   if(btn.dataset.goMatrix){showTab('tab-matrix');el('p-matrix').scrollIntoView({behavior:'smooth',block:'start'})}
+ });
+})();
 </script>
 
 </body></html>
