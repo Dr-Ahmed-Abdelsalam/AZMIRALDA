@@ -10,6 +10,19 @@
 :root{color-scheme:dark}body{margin:0;background:linear-gradient(145deg,#071a30,#10294a 62%,#1b3853);color:#f6f8fc;font-family:Cairo,Tahoma,Arial,sans-serif;min-height:100vh}
 .wrap{max-width:1000px;margin:auto;padding:28px 22px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}.brand img{width:110px;max-height:80px;object-fit:contain;background:white;border-radius:12px;padding:6px}.back{color:#e6d2a2;text-decoration:none;border:1px solid #a97f2c88;border-radius:12px;padding:10px 16px}.hero{min-height:65vh;display:grid;place-content:center;text-align:center;gap:20px}.eyebrow{color:#deb76c;letter-spacing:.13em;font-weight:bold}.soon{font-size:clamp(3rem,11vw,6.5rem);line-height:1.2;color:#e6c47c;margin:0}.hero h1{font-size:clamp(1.4rem,3.8vw,2.6rem);line-height:1.6;margin:0}.desc{max-width:650px;margin:auto;color:#d7e0ed;font-size:1.06rem;line-height:2}.status{border:1px solid #b28d4e;background:#ffffff0c;padding:16px 22px;border-radius:16px;max-width:690px;margin:auto;line-height:1.9}.footer{border-top:1px solid #ffffff25;padding-top:20px;color:#abbdd1;font-size:.9rem;text-align:center}.lang{background:none;color:#fff;border:1px solid #ffffff70;border-radius:10px;padding:9px 14px;cursor:pointer;font:inherit}.nav{display:flex;align-items:center;gap:10px}
 </style>
+
+<style>
+/* Larger bilingual text for coming-soon page */
+body{font-size:17px;line-height:1.85}
+.back,.lang{font-size:16px;line-height:1.6}
+.eyebrow{font-size:14px}
+.soon{font-size:clamp(58px,11vw,105px)}
+.hero h1{font-size:clamp(25px,4vw,42px);line-height:1.55}
+.desc{font-size:18px;line-height:2}
+.status{font-size:16px;line-height:2}
+.footer{font-size:15px;line-height:1.8}
+@media(max-width:560px){body{font-size:16px}.desc{font-size:17px}.status{font-size:16px;padding:16px}.footer{font-size:14px}}
+</style>
 </head>
 <body>
 <div class="wrap">
