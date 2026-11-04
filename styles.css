@@ -47,3 +47,19 @@
 .newsCourseList b{color:#9b7629;direction:ltr;font-family:Arial,sans-serif;font-size:11px}
 @media(max-width:900px){.newsLayout{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.newsLayout,.newsCourseList{grid-template-columns:1fr}.newsHero{padding:45px 0}.newsCourses{padding:18px}}
+/* Simplified maritime training gateway: matrix exists only on courses.html */
+.trainingSection{padding-block:74px 86px}.trainingSection .trainingLead{margin-bottom:27px}.trainingEntry{display:grid;grid-template-columns:minmax(270px,.86fr) minmax(0,1.6fr);gap:18px}
+.trainingEntryMain{background:linear-gradient(155deg,#244a68,#10294a);border:1px solid #58718c;color:#fff;border-radius:18px;padding:32px;display:flex;flex-direction:column;gap:16px;text-decoration:none;min-height:295px;transition:transform .2s,border-color .2s}
+.trainingEntryMain:hover{transform:translateY(-3px);border-color:#d5aa56}
+.trainingEntryMain strong{font:800 clamp(21px,2.6vw,31px)/1.5 Cairo,sans-serif;color:#fff}
+.trainingEntryOver{font:700 11px/1.7 Arial,sans-serif;color:#e4bf70;letter-spacing:2px;direction:ltr;text-align:start}
+.trainingEntryMain>span:nth-of-type(2){color:#d0deed;line-height:2;font-size:14px}
+.trainingEntryArrow{margin-top:auto;color:#e2bd69;font-weight:800}
+.trainingEntryPaths{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.trainingEntryPaths a{display:flex;flex-direction:column;gap:8px;padding:24px;border-radius:15px;background:#fff;border:1px solid #d7e0e9;color:#10294a;text-decoration:none;transition:transform .2s,border-color .2s}
+.trainingEntryPaths a:hover{transform:translateY(-3px);border-color:#b08a2e}
+.trainingEntryPaths span{font-size:28px;color:#a57f2a}
+.trainingEntryPaths strong{font:800 17px/1.5 Cairo,sans-serif}
+.trainingEntryPaths small{font:500 12px/1.6 Cairo,sans-serif;color:#65778a}
+@media(max-width:900px){.trainingEntry{grid-template-columns:1fr}.trainingEntryMain{min-height:230px}}
+@media(max-width:540px){.trainingEntryPaths{grid-template-columns:1fr}.trainingEntryPaths a{padding:18px}.trainingSection{padding-block:48px}}
