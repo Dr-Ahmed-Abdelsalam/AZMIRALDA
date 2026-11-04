@@ -514,4 +514,69 @@ const requestedView=new URLSearchParams(location.search).get("view");const viewT
 })();
 </script>
 
+
+<style>
+/* AZMIRALDA maritime learning typography — larger text without changing course data */
+:root{--f-body:"Cairo","IBM Plex Sans Arabic",system-ui,"Segoe UI",Tahoma,sans-serif;--f-display:"Cairo","Reem Kufi","IBM Plex Sans Arabic",system-ui,sans-serif}
+body{font-size:17px;line-height:1.85}
+.wrap{max-width:1320px;gap:26px}
+.azm-sitebar{font-size:15px;line-height:1.8}
+.azm-sitebrand{font-size:13px}
+.azm-context{font-size:16px;line-height:1.95}
+.azm-context strong{font-size:19px}
+h1{font-size:clamp(30px,3.5vw,44px);line-height:1.4}
+h2{font-size:clamp(23px,2.3vw,30px);line-height:1.5}
+h3{font-size:19px;line-height:1.55}
+.eyebrow,.lede{font-size:16px;line-height:1.9}
+.trainingJump b{font-size:18px;line-height:1.5}
+.trainingJump small{font-size:15px;line-height:1.65}
+.trainingJump .jumpMark{font-size:28px}
+.nav-intro h2{font-size:clamp(27px,2.9vw,38px)}
+.nav-intro p{font-size:17px;line-height:1.9}
+.nav-intro small{font-size:14px}
+.nav-mode{min-height:148px;padding:20px 16px}
+.nav-mode strong{font-size:18px;line-height:1.5}
+.nav-mode small{font-size:15px;line-height:1.7}
+.nav-mode .nav-icon{font-size:29px}
+.nav-form label,.nav-pane p,.nav-result{font-size:16px;line-height:1.85}
+.nav-form input,.nav-form select,.nav-form button,.nav-action{font-size:16px;min-height:46px}
+.nav-result-title{font-size:22px}
+.nav-course{font-size:16px;line-height:1.75}
+.nav-course small{font-size:14px}
+.stat{padding:18px}
+.stat b{font-size:clamp(29px,2.5vw,37px)}
+.stat span{font-size:15px}
+.tab{font-size:17px;line-height:1.5;padding:15px 19px}
+.track h3{font-size:18px}
+.jobbtn{font-size:16px;line-height:1.75}
+.jobbtn small{font-size:14px}
+.f,.count,.matrixHelp{font-size:15px;line-height:1.7}
+.f select,.f input{font-size:16px;min-height:45px}
+#mtable,#gtable{font-size:15px;line-height:1.7}
+#mtable th,#gtable th{font-size:14px;line-height:1.6}
+#mtable td,#mtable th{padding:13px 15px}
+.st,.b{font-size:13px}
+.code,.num{font-size:14px}
+.plate img{width:115px}
+footer{font-size:14px;line-height:1.9}
+@media(max-width:850px){
+  body{font-size:16px}
+  .wrap{padding-inline:16px;gap:20px}
+  .nav-mode{min-height:126px;padding:15px}
+  .nav-mode strong{font-size:17px}
+  .nav-mode small{font-size:14px}
+  .trainingJump b{font-size:17px}
+  #mtable,#gtable{font-size:14px}
+}
+@media(max-width:560px){
+  .azm-sitebar{font-size:14px}
+  .nav-intro{padding:22px 19px}
+  .nav-modes{grid-template-columns:repeat(2,minmax(0,1fr));padding:12px;gap:10px}
+  .nav-mode{min-height:143px}
+  .tab{font-size:16px}
+  .stat b{font-size:29px}
+  .nav-form input,.nav-form select{font-size:16px}
+}
+@media(max-width:375px){.nav-modes{grid-template-columns:1fr}.nav-mode{min-height:0}}
+</style>
 </body></html>
