@@ -1,6 +1,6 @@
-:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
 
-/* Extracted style section */
+/* Organized course explorer styles */
 
 
 .azm-sitebar{background:#10294a;color:#f5f7fb;display:flex;gap:20px;align-items:center;flex-wrap:wrap;padding:12px max(18px,calc((100vw - 1240px)/2));font-size:13px;font-weight:600;border-bottom:3px solid #b08a2e}
@@ -11,7 +11,7 @@
 @media(prefers-color-scheme:dark){.azm-context{background:#1a273b;color:#e0e7f0;border-color:#7c693e}.azm-context strong{color:#f6e6c3}.azm-context a{color:#f0cd79}}
 
 
-/* Extracted style section */
+/* Organized course explorer styles */
 
 
 /* Layout: a chart-room career board — ladder rail beside the selected job's route; matrix and job grid as secondary tabs */
@@ -167,7 +167,7 @@ footer{color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);paddi
 @media(max-width:420px){.nav-mode{min-height:125px;padding:12px 10px}}
 
 
-/* Extracted style section */
+/* Organized course explorer styles */
 
 
 /* Training overview navigation */
@@ -181,7 +181,7 @@ footer{color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);paddi
 @media(max-width:540px){.trainingJump{grid-template-columns:1fr}.trainingJump a{padding:14px}}
 
 
-/* Extracted style section */
+/* Organized course explorer styles */
 
 
 /* Readable evidence matrix, particularly on narrow screens */
@@ -210,7 +210,7 @@ footer{color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);paddi
 @media(max-width:410px){#p-matrix .filters{grid-template-columns:1fr}#p-matrix .filters .f:last-of-type{grid-column:auto}}
 
 
-/* Extracted style section */
+/* Organized course explorer styles */
 
 
 /* AZMIRALDA maritime learning typography — larger text without changing course data */

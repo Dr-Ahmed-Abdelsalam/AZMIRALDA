@@ -61,3 +61,16 @@ test('untrusted input is escaped before composing HTML email',async()=>{
   assert.ok(html.includes('&lt;script&gt;'));assert.ok(!html.includes('<script>'));
  }finally{globalThis.fetch=oldFetch}
 });
+
+test('content type is strictly JSON, not a substring',async()=>{
+ const response=await contact({request:req('contact',payload(),{'content-type':'text/plain; note=application/json'}),env});
+ assert.equal(response.status,415);
+});
+test('invalid JSON is rejected',async()=>{
+ const response=await instructor({request:req('instructor','{invalid'),env});
+ assert.equal(response.status,400);
+});
+test('explicit oversized Content-Length is rejected',async()=>{
+ const response=await contact({request:req('contact',payload(),{'content-length':'12001'}),env});
+ assert.equal(response.status,413);
+});

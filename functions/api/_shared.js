@@ -5,7 +5,7 @@ const checkEmail=email=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)&&email.length<=
 const escapeHtml=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export async function handleForm({request,env},kind){
  if(request.method!=='POST')return reply({error:'Method not allowed'},405);
- if(!request.headers.get('content-type')?.includes('application/json'))return reply({error:'Unsupported content type'},415);
+ if(!/^application\/json(?:\s*;|\s*$)/i.test(request.headers.get('content-type')||''))return reply({error:'Unsupported content type'},415);
  const len=Number(request.headers.get('content-length')||0);if(len>12000)return reply({error:'Payload too large'},413);
  let data;
  try{

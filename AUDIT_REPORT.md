@@ -19,3 +19,10 @@ Branch: `audit/fix-forms-courses-mobile-20261105`
 - Review and merge PR only after CI passes and these live checks are complete.
 
 **Status:** Code changes committed; live delivery and device/browser results are not claimed until actually verified.
+
+## Cleanup revision
+- Removed the obsolete 14px course-explorer font reset, retaining current responsive typography.
+- Removed excess empty lines in courses.html.
+- Tightened request JSON content-type parsing.
+- Added media-type and invalid-body tests, plus a CI source hygiene check.
+- No maritime training datasets or unpublished governance documents were deleted.

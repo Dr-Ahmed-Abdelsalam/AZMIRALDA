@@ -56,3 +56,6 @@ Source files: official logo JPEG and banner PNG provided by the user; `برام�
 - Turnstile only activates when a public site key is configured; the backend only requires its token when `TURNSTILE_SECRET_KEY` is set. Configure both simultaneously, and test Cloudflare preview before release.
 - Requests are capped while streaming (12,000 bytes), independently of Content-Length.
 - Test email delivery requires correct Resend secrets and an authorized Cloudflare preview deployment; static previews alone cannot verify it.
+
+## Before deployment — clean source gate
+Run `npm run check` (no external npm dependencies): syntax, form security, internal links, canonical catalogue and source hygiene. GitHub Actions runs these checks on Pull Requests. External links and actual Cloudflare/Resend delivery remain manual checks. No draft legal or governance rules are published.
