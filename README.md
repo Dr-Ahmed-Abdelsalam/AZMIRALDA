@@ -34,6 +34,7 @@ Open `index.html` in a browser for static interface testing. Course search and b
 ## Data provenance
 Source files: official logo JPEG and banner PNG provided by the user; `برامج أزميرالدا ومساراتها.html` for structured course details, `كتالوج برامج أزميرالدا.pdf` for course hours, grouping, corporate phone/address and proposed approval status.
 
+
 ## Additional course explorer
 `courses.html` is integrated from the user-supplied `مصفوفة_دورات_أزميرالدا.html`. It retains all 68 records, 24 jobs, three interactive tabs, filtering, and original source notes. It is an Arabic-language planning tool. The home page links to it; it does **not** mean all 68 programmes are approved or open for registration. The original 16-programme proposed first-phase catalogue remains on the home page.
 
@@ -43,3 +44,8 @@ Source files: official logo JPEG and banner PNG provided by the user; `برام�
 - `governance/`: six draft governance and procedural texts for review. They are **not effective** and not designed to accept live cases.
 - The Centre is **not operational**; no arbitration, mediation, expert appointments or payments are accepted through this project.
 - Before launch: confirm legal form and authorisations, approve rules and fees, establish independent governance, security/privacy controls and formal launch decision. Do not make the drafts operational by removing the notice alone.
+
+## Company news and programme ticker
+- `news.html` is a bilingual company updates section linked from the main navigation and footer.
+- The home page includes a pauseable accessible scrolling ticker populated from the phase-one proposed programme catalogue (`assets/courses.js`), with no invented announcements or enrollment claims.
+- When operational company news becomes available, replace preliminary cards only with reviewed, dated content.
